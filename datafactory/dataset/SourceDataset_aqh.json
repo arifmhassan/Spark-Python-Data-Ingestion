@@ -1,0 +1,152 @@
+{
+	"name": "SourceDataset_aqh",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Sftp1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "SftpLocation",
+				"folderPath": "/"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "DateTime",
+				"type": "String"
+			},
+			{
+				"name": "TERM",
+				"type": "String"
+			},
+			{
+				"name": "UID",
+				"type": "String"
+			},
+			{
+				"name": "DUR",
+				"type": "String"
+			},
+			{
+				"name": "StoreID",
+				"type": "String"
+			},
+			{
+				"name": "VisitDate",
+				"type": "String"
+			},
+			{
+				"name": "VisitTime",
+				"type": "String"
+			},
+			{
+				"name": "CommentType",
+				"type": "String"
+			},
+			{
+				"name": "CheckNum",
+				"type": "String"
+			},
+			{
+				"name": "ConfirmationNum",
+				"type": "String"
+			},
+			{
+				"name": "C000001",
+				"type": "String"
+			},
+			{
+				"name": "C000002",
+				"type": "String"
+			},
+			{
+				"name": "C000003",
+				"type": "String"
+			},
+			{
+				"name": "C000004",
+				"type": "String"
+			},
+			{
+				"name": "C000005",
+				"type": "String"
+			},
+			{
+				"name": "C000006",
+				"type": "String"
+			},
+			{
+				"name": "C000008",
+				"type": "String"
+			},
+			{
+				"name": "C000009",
+				"type": "String"
+			},
+			{
+				"name": "C000010",
+				"type": "String"
+			},
+			{
+				"name": "C000016",
+				"type": "String"
+			},
+			{
+				"name": "C000018",
+				"type": "String"
+			},
+			{
+				"name": "C000019",
+				"type": "String"
+			},
+			{
+				"name": "C000020",
+				"type": "String"
+			},
+			{
+				"name": "C000022",
+				"type": "String"
+			},
+			{
+				"name": "C000024",
+				"type": "String"
+			},
+			{
+				"name": "R000023",
+				"type": "String"
+			},
+			{
+				"name": "C000011",
+				"type": "String"
+			},
+			{
+				"name": "C000012",
+				"type": "String"
+			},
+			{
+				"name": "C000013",
+				"type": "String"
+			},
+			{
+				"name": "C000014",
+				"type": "String"
+			},
+			{
+				"name": "C000015",
+				"type": "String"
+			},
+			{
+				"name": "C000072",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
