@@ -1,0 +1,16 @@
+{
+	"name": "SqlServerOnPrem",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=SQLVMARIF;initial catalog=ChopShop;user id=azureadmin",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJiYzExODIyNC05YjA1LTQ2MzItODE5NS1kNDNkY2Y4M2E1OGEiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
