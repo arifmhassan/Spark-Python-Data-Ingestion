@@ -1,0 +1,10 @@
+DataBase Parition Candidate
+select distinct DatabaseName,ObjectName 
+,max(datediff(minute,c.StartTime,c.Endtime)) as cci_maintenance_time_elapsed
+from Master.dbo.commandLog c 
+where cast(c.StartTime as date)>=cast(getdate()-10 as date) --last 21 days
+and indexname like 'CCI%' --CCI indexes
+and datediff(minute,c.StartTime,c.Endtime) > 45 --Index maint took > 45 minutes
+and DatabaseName not in ('Test' )
+group by DatabaseName,ObjectName 
+order by max(datediff(minute,c.StartTime,c.Endtime)) desc
