@@ -10,9 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureDataLakeStoreLocation",
+				"fileName": "test",
 				"folderPath": "DailySales"
 			},
-			"compressionCodec": "snappy"
+			"compressionCodec": "gzip"
 		},
 		"schema": []
 	}
