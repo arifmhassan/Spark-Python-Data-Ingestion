@@ -56,242 +56,12 @@
 							},
 							{
 								"source": {
-									"name": "gSequence",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 3
-								}
-							},
-							{
-								"source": {
-									"name": "gCheck",
-									"type": "String"
-								},
-								"sink": {
-									"type": "String",
-									"ordinal": 4
-								}
-							},
-							{
-								"source": {
-									"name": "gDestination",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 5
-								}
-							},
-							{
-								"source": {
-									"name": "gRevCtr",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 6
-								}
-							},
-							{
-								"source": {
-									"name": "gTable",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 7
-								}
-							},
-							{
-								"source": {
-									"name": "gTab",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 8
-								}
-							},
-							{
-								"source": {
-									"name": "gEmployee",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 9
-								}
-							},
-							{
-								"source": {
-									"name": "gManager",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 10
-								}
-							},
-							{
-								"source": {
-									"name": "gJob",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 11
-								}
-							},
-							{
-								"source": {
-									"name": "gDriver",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 12
-								}
-							},
-							{
-								"source": {
-									"name": "gGuest",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 13
-								}
-							},
-							{
-								"source": {
-									"name": "gTax",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 14
-								}
-							},
-							{
-								"source": {
-									"name": "gTender",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 15
-								}
-							},
-							{
-								"source": {
-									"name": "gDiscount",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 16
-								}
-							},
-							{
-								"source": {
-									"name": "gVoid",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 17
-								}
-							},
-							{
-								"source": {
-									"name": "gItem",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 18
-								}
-							},
-							{
-								"source": {
-									"name": "gMinute",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 19
-								}
-							},
-							{
-								"source": {
-									"name": "gHour",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 20
-								}
-							},
-							{
-								"source": {
-									"name": "gHouseAccount",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 21
-								}
-							},
-							{
-								"source": {
-									"name": "gDaypart",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 22
-								}
-							},
-							{
-								"source": {
-									"name": "gCashier",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 23
-								}
-							},
-							{
-								"source": {
-									"name": "gCoupon",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 24
-								}
-							},
-							{
-								"source": {
-									"name": "gPaidType",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 25
-								}
-							},
-							{
-								"source": {
 									"name": "mQuantity",
 									"type": "Decimal"
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 26
+									"ordinal": 3
 								}
 							},
 							{
@@ -301,7 +71,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 27
+									"ordinal": 4
 								}
 							},
 							{
@@ -311,7 +81,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 28
+									"ordinal": 5
 								}
 							},
 							{
@@ -321,7 +91,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 29
+									"ordinal": 6
 								}
 							},
 							{
@@ -331,7 +101,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 30
+									"ordinal": 7
 								}
 							},
 							{
@@ -341,7 +111,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 31
+									"ordinal": 8
 								}
 							},
 							{
@@ -351,7 +121,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 32
+									"ordinal": 9
 								}
 							},
 							{
@@ -361,7 +131,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 33
+									"ordinal": 10
 								}
 							},
 							{
@@ -371,7 +141,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 34
+									"ordinal": 11
 								}
 							},
 							{
@@ -381,7 +151,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 35
+									"ordinal": 12
 								}
 							},
 							{
@@ -391,7 +161,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 36
+									"ordinal": 13
 								}
 							},
 							{
@@ -401,7 +171,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 37
+									"ordinal": 14
 								}
 							},
 							{
@@ -411,7 +181,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 38
+									"ordinal": 15
 								}
 							},
 							{
@@ -421,7 +191,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 39
+									"ordinal": 16
 								}
 							},
 							{
@@ -431,7 +201,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 40
+									"ordinal": 17
 								}
 							},
 							{
@@ -441,7 +211,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 41
+									"ordinal": 18
 								}
 							},
 							{
@@ -451,7 +221,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 42
+									"ordinal": 19
 								}
 							},
 							{
@@ -461,7 +231,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 43
+									"ordinal": 20
 								}
 							},
 							{
@@ -471,7 +241,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 44
+									"ordinal": 21
 								}
 							},
 							{
@@ -481,7 +251,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 45
+									"ordinal": 22
 								}
 							},
 							{
@@ -491,7 +261,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 46
+									"ordinal": 23
 								}
 							},
 							{
@@ -501,7 +271,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 47
+									"ordinal": 24
 								}
 							},
 							{
@@ -511,27 +281,17 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 48
+									"ordinal": 25
 								}
 							},
 							{
 								"source": {
-									"name": "gRegister",
-									"type": "Int32"
+									"name": "oActualSalesOb",
+									"type": "Byte"
 								},
 								"sink": {
-									"type": "Int32",
-									"ordinal": 49
-								}
-							},
-							{
-								"source": {
-									"name": "gDrawer",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 50
+									"type": "Byte",
+									"ordinal": 26
 								}
 							},
 							{
@@ -541,27 +301,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 51
-								}
-							},
-							{
-								"source": {
-									"name": "gHalfHour",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 52
-								}
-							},
-							{
-								"source": {
-									"name": "gQuarterHour",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 53
+									"ordinal": 27
 								}
 							},
 							{
@@ -571,7 +311,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 54
+									"ordinal": 28
 								}
 							},
 							{
@@ -581,7 +321,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 55
+									"ordinal": 29
 								}
 							},
 							{
@@ -591,7 +331,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 56
+									"ordinal": 30
 								}
 							},
 							{
@@ -601,7 +341,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 57
+									"ordinal": 31
 								}
 							},
 							{
@@ -611,7 +351,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 58
+									"ordinal": 32
 								}
 							},
 							{
@@ -621,7 +361,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 59
+									"ordinal": 33
 								}
 							},
 							{
@@ -631,7 +371,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 60
+									"ordinal": 34
 								}
 							},
 							{
@@ -641,7 +381,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 61
+									"ordinal": 35
 								}
 							},
 							{
@@ -651,7 +391,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 62
+									"ordinal": 36
 								}
 							},
 							{
@@ -661,37 +401,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 63
-								}
-							},
-							{
-								"source": {
-									"name": "gParentItem",
-									"type": "Int32"
-								},
-								"sink": {
-									"type": "Int32",
-									"ordinal": 64
-								}
-							},
-							{
-								"source": {
-									"name": "mCheckStartTime",
-									"type": "DateTime"
-								},
-								"sink": {
-									"type": "DateTime",
-									"ordinal": 65
-								}
-							},
-							{
-								"source": {
-									"name": "mCheckEndTime",
-									"type": "DateTime"
-								},
-								"sink": {
-									"type": "DateTime",
-									"ordinal": 66
+									"ordinal": 37
 								}
 							},
 							{
@@ -701,7 +411,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 67
+									"ordinal": 38
 								}
 							},
 							{
@@ -711,7 +421,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 68
+									"ordinal": 39
 								}
 							},
 							{
@@ -721,7 +431,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 69
+									"ordinal": 40
 								}
 							},
 							{
@@ -731,7 +441,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 70
+									"ordinal": 41
 								}
 							},
 							{
@@ -741,7 +451,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 71
+									"ordinal": 42
 								}
 							},
 							{
@@ -751,7 +461,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 72
+									"ordinal": 43
 								}
 							},
 							{
@@ -761,7 +471,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 73
+									"ordinal": 44
 								}
 							},
 							{
@@ -771,7 +481,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 74
+									"ordinal": 45
 								}
 							},
 							{
@@ -781,7 +491,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 75
+									"ordinal": 46
 								}
 							},
 							{
@@ -791,7 +501,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 76
+									"ordinal": 47
 								}
 							},
 							{
@@ -801,7 +511,7 @@
 								},
 								"sink": {
 									"type": "Int32",
-									"ordinal": 77
+									"ordinal": 48
 								}
 							},
 							{
@@ -811,7 +521,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 78
+									"ordinal": 49
 								}
 							},
 							{
@@ -821,7 +531,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 79
+									"ordinal": 50
 								}
 							},
 							{
@@ -831,7 +541,7 @@
 								},
 								"sink": {
 									"type": "Decimal",
-									"ordinal": 80
+									"ordinal": 51
 								}
 							}
 						]
