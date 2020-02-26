@@ -1,0 +1,13 @@
+{
+	"name": "AzureDataLakeStore1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://arifadls.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "04fc92ba-c123-4a71-828c-e71926c3d653",
+			"subscriptionId": "f9bd0aee-a5ce-425f-8680-e8115d4d38fa",
+			"resourceGroupName": "arifmhassanajure"
+		}
+	}
+}
