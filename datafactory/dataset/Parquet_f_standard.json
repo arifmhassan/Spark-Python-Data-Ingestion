@@ -1,0 +1,19 @@
+{
+	"name": "Parquet_f_standard",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStore1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation",
+				"folderPath": "DailySales"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

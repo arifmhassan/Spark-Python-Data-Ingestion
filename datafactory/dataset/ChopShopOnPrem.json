@@ -1,0 +1,452 @@
+{
+	"name": "ChopShopOnPrem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerOnPrem",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "gDay",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gStore",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gSequence",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gCheck",
+				"type": "varchar"
+			},
+			{
+				"name": "gDestination",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gRevCtr",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gTable",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gTab",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gEmployee",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gManager",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gJob",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gDriver",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gGuest",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gTax",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gTender",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gDiscount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gVoid",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gItem",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gMinute",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gHour",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gHouseAccount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gDaypart",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gCashier",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gCoupon",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gPaidType",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mQuantity",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCheckAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mTaxAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mVoidCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mVoidAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mDiscountCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mDiscountAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mGuestCount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCoverCount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mTenderCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mTenderAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mTipAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mServiceCharge",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mDeliveryCharge",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mMenuItemPriceExtended",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCouponCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mCouponAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCheckCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mActualDepositAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mExpectedDepositAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mGiftCardSales",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCheckTotal",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCheckSpanTime",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gRegister",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gDrawer",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gIntraday",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gHalfHour",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gQuarterHour",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mGrossSales",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mNetSales",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mInclusiveTaxAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mExclusiveTaxAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCheckCountCoupon",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mCheckCountDiscount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mPaidInAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mPaidOutAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mGiftCardDiscountsPromosCouponsAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mAutoGratAmt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "gParentItem",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mCheckStartTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "mCheckEndTime",
+				"type": "smalldatetime",
+				"precision": 16,
+				"scale": 0
+			},
+			{
+				"name": "mTaxExemptSales",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mAdjustAfterTenderAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mAdjustAfterTenderCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mAdjustAfterTenderNewCheckAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mAdjustAfterTenderNewCheckCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mDeleteBeforeKitchenAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mDeleteBeforeKitchenCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mDeleteAfterKitchenAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mDeleteAfterKitchenCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mDeleteOrderAfterKitchenAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mDeleteOrderAfterKitchenCount",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "mOrderModeChargeAmount",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCarriedOverAmt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "mCarriedOverTaxAmt",
+				"type": "money",
+				"precision": 19,
+				"scale": 4
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "f_Standard_Transaction_Sales"
+		}
+	}
+}
