@@ -446,7 +446,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "f_Standard_Transaction_Sales"
+			"table": "s_Standard_Day_Store_Sales"
 		}
 	}
 }
