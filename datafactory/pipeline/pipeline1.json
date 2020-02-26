@@ -20,9 +20,14 @@
 						"queryTimeout": "02:00:00"
 					},
 					"sink": {
-						"type": "ParquetSink",
+						"type": "DelimitedTextSink",
 						"storeSettings": {
 							"type": "AzureDataLakeStoreWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
 						}
 					},
 					"enableStaging": false,
@@ -35,8 +40,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDay",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 1
 								}
 							},
 							{
@@ -45,8 +50,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gStore",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 2
 								}
 							},
 							{
@@ -55,8 +60,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gSequence",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 3
 								}
 							},
 							{
@@ -65,8 +70,8 @@
 									"type": "String"
 								},
 								"sink": {
-									"name": "gCheck",
-									"type": "String"
+									"type": "String",
+									"ordinal": 4
 								}
 							},
 							{
@@ -75,8 +80,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDestination",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 5
 								}
 							},
 							{
@@ -85,8 +90,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gRevCtr",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 6
 								}
 							},
 							{
@@ -95,8 +100,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gTable",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 7
 								}
 							},
 							{
@@ -105,8 +110,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gTab",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 8
 								}
 							},
 							{
@@ -115,8 +120,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gEmployee",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 9
 								}
 							},
 							{
@@ -125,8 +130,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gManager",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 10
 								}
 							},
 							{
@@ -135,8 +140,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gJob",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 11
 								}
 							},
 							{
@@ -145,8 +150,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDriver",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 12
 								}
 							},
 							{
@@ -155,8 +160,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gGuest",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 13
 								}
 							},
 							{
@@ -165,8 +170,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gTax",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 14
 								}
 							},
 							{
@@ -175,8 +180,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gTender",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 15
 								}
 							},
 							{
@@ -185,8 +190,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDiscount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 16
 								}
 							},
 							{
@@ -195,8 +200,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gVoid",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 17
 								}
 							},
 							{
@@ -205,8 +210,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gItem",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 18
 								}
 							},
 							{
@@ -215,8 +220,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gMinute",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 19
 								}
 							},
 							{
@@ -225,8 +230,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gHour",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 20
 								}
 							},
 							{
@@ -235,8 +240,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gHouseAccount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 21
 								}
 							},
 							{
@@ -245,8 +250,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDaypart",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 22
 								}
 							},
 							{
@@ -255,8 +260,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gCashier",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 23
 								}
 							},
 							{
@@ -265,8 +270,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gCoupon",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 24
 								}
 							},
 							{
@@ -275,8 +280,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gPaidType",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 25
 								}
 							},
 							{
@@ -285,8 +290,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mQuantity",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 26
 								}
 							},
 							{
@@ -295,8 +300,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCheckAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 27
 								}
 							},
 							{
@@ -305,8 +310,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mTaxAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 28
 								}
 							},
 							{
@@ -315,8 +320,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mVoidCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 29
 								}
 							},
 							{
@@ -325,8 +330,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mVoidAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 30
 								}
 							},
 							{
@@ -335,8 +340,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mDiscountCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 31
 								}
 							},
 							{
@@ -345,8 +350,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mDiscountAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 32
 								}
 							},
 							{
@@ -355,8 +360,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mGuestCount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 33
 								}
 							},
 							{
@@ -365,8 +370,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCoverCount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 34
 								}
 							},
 							{
@@ -375,8 +380,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mTenderCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 35
 								}
 							},
 							{
@@ -385,8 +390,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mTenderAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 36
 								}
 							},
 							{
@@ -395,8 +400,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mTipAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 37
 								}
 							},
 							{
@@ -405,8 +410,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mServiceCharge",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 38
 								}
 							},
 							{
@@ -415,8 +420,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mDeliveryCharge",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 39
 								}
 							},
 							{
@@ -425,8 +430,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mMenuItemPriceExtended",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 40
 								}
 							},
 							{
@@ -435,8 +440,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mCouponCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 41
 								}
 							},
 							{
@@ -445,8 +450,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCouponAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 42
 								}
 							},
 							{
@@ -455,8 +460,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mCheckCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 43
 								}
 							},
 							{
@@ -465,8 +470,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mActualDepositAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 44
 								}
 							},
 							{
@@ -475,8 +480,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mExpectedDepositAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 45
 								}
 							},
 							{
@@ -485,8 +490,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mGiftCardSales",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 46
 								}
 							},
 							{
@@ -495,8 +500,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCheckTotal",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 47
 								}
 							},
 							{
@@ -505,8 +510,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mCheckSpanTime",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 48
 								}
 							},
 							{
@@ -515,8 +520,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gRegister",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 49
 								}
 							},
 							{
@@ -525,8 +530,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gDrawer",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 50
 								}
 							},
 							{
@@ -535,8 +540,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gIntraday",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 51
 								}
 							},
 							{
@@ -545,8 +550,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gHalfHour",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 52
 								}
 							},
 							{
@@ -555,8 +560,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gQuarterHour",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 53
 								}
 							},
 							{
@@ -565,8 +570,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mGrossSales",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 54
 								}
 							},
 							{
@@ -575,8 +580,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mNetSales",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 55
 								}
 							},
 							{
@@ -585,8 +590,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mInclusiveTaxAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 56
 								}
 							},
 							{
@@ -595,8 +600,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mExclusiveTaxAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 57
 								}
 							},
 							{
@@ -605,8 +610,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mCheckCountCoupon",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 58
 								}
 							},
 							{
@@ -615,8 +620,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mCheckCountDiscount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 59
 								}
 							},
 							{
@@ -625,8 +630,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mPaidInAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 60
 								}
 							},
 							{
@@ -635,8 +640,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mPaidOutAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 61
 								}
 							},
 							{
@@ -645,8 +650,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mGiftCardDiscountsPromosCouponsAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 62
 								}
 							},
 							{
@@ -655,8 +660,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mAutoGratAmt",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 63
 								}
 							},
 							{
@@ -665,8 +670,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "gParentItem",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 64
 								}
 							},
 							{
@@ -675,8 +680,8 @@
 									"type": "DateTime"
 								},
 								"sink": {
-									"name": "mCheckStartTime",
-									"type": "DateTime"
+									"type": "DateTime",
+									"ordinal": 65
 								}
 							},
 							{
@@ -685,8 +690,8 @@
 									"type": "DateTime"
 								},
 								"sink": {
-									"name": "mCheckEndTime",
-									"type": "DateTime"
+									"type": "DateTime",
+									"ordinal": 66
 								}
 							},
 							{
@@ -695,8 +700,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mTaxExemptSales",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 67
 								}
 							},
 							{
@@ -705,8 +710,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mAdjustAfterTenderAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 68
 								}
 							},
 							{
@@ -715,8 +720,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mAdjustAfterTenderCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 69
 								}
 							},
 							{
@@ -725,8 +730,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mAdjustAfterTenderNewCheckAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 70
 								}
 							},
 							{
@@ -735,8 +740,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mAdjustAfterTenderNewCheckCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 71
 								}
 							},
 							{
@@ -745,8 +750,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mDeleteBeforeKitchenAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 72
 								}
 							},
 							{
@@ -755,8 +760,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mDeleteBeforeKitchenCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 73
 								}
 							},
 							{
@@ -765,8 +770,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mDeleteAfterKitchenAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 74
 								}
 							},
 							{
@@ -775,8 +780,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mDeleteAfterKitchenCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 75
 								}
 							},
 							{
@@ -785,8 +790,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mDeleteOrderAfterKitchenAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 76
 								}
 							},
 							{
@@ -795,8 +800,8 @@
 									"type": "Int32"
 								},
 								"sink": {
-									"name": "mDeleteOrderAfterKitchenCount",
-									"type": "Int32"
+									"type": "Int32",
+									"ordinal": 77
 								}
 							},
 							{
@@ -805,8 +810,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mOrderModeChargeAmount",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 78
 								}
 							},
 							{
@@ -815,8 +820,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCarriedOverAmt",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 79
 								}
 							},
 							{
@@ -825,8 +830,8 @@
 									"type": "Decimal"
 								},
 								"sink": {
-									"name": "mCarriedOverTaxAmt",
-									"type": "Decimal"
+									"type": "Decimal",
+									"ordinal": 80
 								}
 							}
 						]
@@ -840,7 +845,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "Parquet_f_standard",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				]
