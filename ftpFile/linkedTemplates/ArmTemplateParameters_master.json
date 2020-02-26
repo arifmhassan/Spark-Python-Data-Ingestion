@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "ftpFile"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureDatabricks_LinkedService_accessToken": {
+			"value": ""
+		},
+		"AzureSqlDatabaseLinkedService_connectionString": {
+			"value": ""
+		},
+		"Sftp1_password": {
+			"value": ""
+		},
+		"SqlServerOnPrem_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"value": "https://arifadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"value": "04fc92ba-c123-4a71-828c-e71926c3d653"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"value": "f9bd0aee-a5ce-425f-8680-e8115d4d38fa"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"value": "arifmhassanajure"
+		},
+		"Sftp1_properties_typeProperties_host": {
+			"value": "sftp.servicemanagement.com"
+		},
+		"Sftp1_properties_typeProperties_userName": {
+			"value": "PORT_FTPS"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"value": "arifazuresql.database.windows.net"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"value": "arifmhassan"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"value": ""
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

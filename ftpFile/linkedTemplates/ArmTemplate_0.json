@@ -1,0 +1,2301 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "ftpFile"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureBlobStorage1'"
+		},
+		"AzureDatabricks_LinkedService_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks_LinkedService'"
+		},
+		"AzureSqlDatabaseLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureSqlDatabaseLinkedService'"
+		},
+		"Sftp1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Sftp1'"
+		},
+		"SqlServerOnPrem_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'SqlServerOnPrem'"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri": {
+			"type": "string",
+			"defaultValue": "https://arifadls.azuredatalakestore.net/webhdfs/v1"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "04fc92ba-c123-4a71-828c-e71926c3d653"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_subscriptionId": {
+			"type": "string",
+			"defaultValue": "f9bd0aee-a5ce-425f-8680-e8115d4d38fa"
+		},
+		"AzureDataLakeStore1_properties_typeProperties_resourceGroupName": {
+			"type": "string",
+			"defaultValue": "arifmhassanajure"
+		},
+		"Sftp1_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "sftp.servicemanagement.com"
+		},
+		"Sftp1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "PORT_FTPS"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint": {
+			"type": "string",
+			"defaultValue": "arifazuresql.database.windows.net"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName": {
+			"type": "string",
+			"defaultValue": "arifmhassan"
+		},
+		"ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword": {
+			"type": "secureString"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStore1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDataLakeStore",
+				"typeProperties": {
+					"dataLakeStoreUri": "[parameters('AzureDataLakeStore1_properties_typeProperties_dataLakeStoreUri')]",
+					"tenant": "[parameters('AzureDataLakeStore1_properties_typeProperties_tenant')]",
+					"subscriptionId": "[parameters('AzureDataLakeStore1_properties_typeProperties_subscriptionId')]",
+					"resourceGroupName": "[parameters('AzureDataLakeStore1_properties_typeProperties_resourceGroupName')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDatabricks_LinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://eastus.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDatabricks_LinkedService_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_DS3_v2",
+					"newClusterNumOfWorker": "2",
+					"newClusterVersion": "3.5.x-scala2.11"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabaseLinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureSqlDatabaseLinkedService_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Sftp1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "Sftp",
+				"typeProperties": {
+					"host": "[parameters('Sftp1_properties_typeProperties_host')]",
+					"port": 22,
+					"skipHostKeyValidation": true,
+					"authenticationType": "Basic",
+					"userName": "[parameters('Sftp1_properties_typeProperties_userName')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Sftp1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/integrationRuntime1')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"description": "IR",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ssisir')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "Managed",
+				"typeProperties": {
+					"computeProperties": {
+						"location": "South Central US",
+						"nodeSize": "Standard_D1_v2",
+						"numberOfNodes": 1,
+						"maxParallelExecutionsPerNode": 1
+					},
+					"ssisProperties": {
+						"catalogInfo": {
+							"catalogServerEndpoint": "[parameters('ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogServerEndpoint')]",
+							"catalogAdminUserName": "[parameters('ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminUserName')]",
+							"catalogAdminPassword": {
+								"type": "SecureString",
+								"value": "[parameters('ssisir_properties_typeProperties_ssisProperties_catalogInfo_catalogAdminPassword')]"
+							},
+							"catalogPricingTier": "Basic"
+						},
+						"edition": "Standard",
+						"licenseType": "LicenseIncluded"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/name')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/adftutorial/mynotebook",
+							"baseParameters": {
+								"input": {
+									"value": "@pipeline().parameters.name",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks_LinkedService",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"parameters": {
+					"name": {
+						"type": "string",
+						"defaultValue": "/path/filename"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDatabricks_LinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DestinationDataset_aqh')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"container": "survey"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					},
+					{
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Parquet_f_standard')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStore1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation",
+						"folderPath": "DailySales"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStore1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SinkDataSet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@CONCAT('Incremental-', pipeline().RunId, '.txt')",
+							"type": "Expression"
+						},
+						"folderPath": "incremental",
+						"container": "ftpfile/incrementalcopy. adftutorial"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "PersonID",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "varchar"
+					},
+					{
+						"name": "LastModifytime",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "data_source_table"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseLinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SourceDataset_aqh')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Sftp1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "SftpLocation",
+						"folderPath": "/"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "DateTime",
+						"type": "String"
+					},
+					{
+						"name": "TERM",
+						"type": "String"
+					},
+					{
+						"name": "UID",
+						"type": "String"
+					},
+					{
+						"name": "DUR",
+						"type": "String"
+					},
+					{
+						"name": "StoreID",
+						"type": "String"
+					},
+					{
+						"name": "VisitDate",
+						"type": "String"
+					},
+					{
+						"name": "VisitTime",
+						"type": "String"
+					},
+					{
+						"name": "CommentType",
+						"type": "String"
+					},
+					{
+						"name": "CheckNum",
+						"type": "String"
+					},
+					{
+						"name": "ConfirmationNum",
+						"type": "String"
+					},
+					{
+						"name": "C000001",
+						"type": "String"
+					},
+					{
+						"name": "C000002",
+						"type": "String"
+					},
+					{
+						"name": "C000003",
+						"type": "String"
+					},
+					{
+						"name": "C000004",
+						"type": "String"
+					},
+					{
+						"name": "C000005",
+						"type": "String"
+					},
+					{
+						"name": "C000006",
+						"type": "String"
+					},
+					{
+						"name": "C000008",
+						"type": "String"
+					},
+					{
+						"name": "C000009",
+						"type": "String"
+					},
+					{
+						"name": "C000010",
+						"type": "String"
+					},
+					{
+						"name": "C000016",
+						"type": "String"
+					},
+					{
+						"name": "C000018",
+						"type": "String"
+					},
+					{
+						"name": "C000019",
+						"type": "String"
+					},
+					{
+						"name": "C000020",
+						"type": "String"
+					},
+					{
+						"name": "C000022",
+						"type": "String"
+					},
+					{
+						"name": "C000024",
+						"type": "String"
+					},
+					{
+						"name": "R000023",
+						"type": "String"
+					},
+					{
+						"name": "C000011",
+						"type": "String"
+					},
+					{
+						"name": "C000012",
+						"type": "String"
+					},
+					{
+						"name": "C000013",
+						"type": "String"
+					},
+					{
+						"name": "C000014",
+						"type": "String"
+					},
+					{
+						"name": "C000015",
+						"type": "String"
+					},
+					{
+						"name": "C000072",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Sftp1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WatermarkDataset')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabaseLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "TableName",
+						"type": "varchar"
+					},
+					{
+						"name": "WatermarkValue",
+						"type": "datetime",
+						"precision": 23,
+						"scale": 3
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "watermarktable"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseLinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerOnPrem')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"connectionString": "[parameters('SqlServerOnPrem_connectionString')]"
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime1",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/IncrementalCopyPipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LookupOldWaterMarkActivity",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource"
+							},
+							"dataset": {
+								"referenceName": "WatermarkDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						}
+					},
+					{
+						"name": "LookupNewWaterMarkActivity",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": "select MAX(LastModifytime) as NewWatermarkvalue from data_source_table"
+							},
+							"dataset": {
+								"referenceName": "SourceDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": true
+						}
+					},
+					{
+						"name": "IncrementalCopyActivity",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "LookupOldWaterMarkActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "LookupNewWaterMarkActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "select * from data_source_table where LastModifytime > '@{activity('LookupOldWaterMarkActivity').output.firstRow.WatermarkValue}' and LastModifytime <= '@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}'",
+									"type": "Expression"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SinkDataSet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					},
+					{
+						"name": "StoredProceduretoWriteWatermarkActivity",
+						"type": "SqlServerStoredProcedure",
+						"dependsOn": [
+							{
+								"activity": "IncrementalCopyActivity",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"storedProcedureName": "[[dbo].[usp_write_watermark]",
+							"storedProcedureParameters": {
+								"LastModifiedtime": {
+									"value": {
+										"value": "@{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue}\n",
+										"type": "Expression"
+									},
+									"type": "DateTime"
+								},
+								"TableName": {
+									"value": {
+										"value": "@{activity('LookupOldWaterMarkActivity').output.firstRow.TableName}\n",
+										"type": "Expression"
+									},
+									"type": "String"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureSqlDatabaseLinkedService",
+							"type": "LinkedServiceReference"
+						}
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/WatermarkDataset')]",
+				"[concat(variables('factoryId'), '/datasets/SourceDataset')]",
+				"[concat(variables('factoryId'), '/datasets/SinkDataSet')]",
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabaseLinkedService')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/copyFtpFile')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "ftp file ",
+				"activities": [
+					{
+						"name": "Copy_aqh",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "//"
+							},
+							{
+								"name": "Destination",
+								"value": "survey//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*.*"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_aqh",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_aqh",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_aqh')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_aqh')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ftpfile')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "ftp file ",
+				"activities": [
+					{
+						"name": "Copy_aqh",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [
+							{
+								"name": "Source",
+								"value": "//"
+							},
+							{
+								"name": "Destination",
+								"value": "survey//"
+							}
+						],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "SftpReadSettings",
+									"recursive": true,
+									"wildcardFileName": "*.*"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings",
+									"skipLineCount": 0
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobStorageWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "SourceDataset_aqh",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DestinationDataset_aqh",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SourceDataset_aqh')]",
+				"[concat(variables('factoryId'), '/datasets/DestinationDataset_aqh')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ChopShopOnPrem')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServerOnPrem",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [
+					{
+						"name": "gDay",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gStore",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gSequence",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gCheck",
+						"type": "varchar"
+					},
+					{
+						"name": "gDestination",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gRevCtr",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gTable",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gTab",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gEmployee",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gManager",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gJob",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gDriver",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gGuest",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gTax",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gTender",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gDiscount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gVoid",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gItem",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gMinute",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gHour",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gHouseAccount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gDaypart",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gCashier",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gCoupon",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gPaidType",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mQuantity",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCheckAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mTaxAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mVoidCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mVoidAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mDiscountCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mDiscountAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mGuestCount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCoverCount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mTenderCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mTenderAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mTipAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mServiceCharge",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mDeliveryCharge",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mMenuItemPriceExtended",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCouponCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mCouponAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCheckCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mActualDepositAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mExpectedDepositAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mGiftCardSales",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCheckTotal",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCheckSpanTime",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gRegister",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gDrawer",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gIntraday",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gHalfHour",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "gQuarterHour",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mGrossSales",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mNetSales",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mInclusiveTaxAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mExclusiveTaxAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCheckCountCoupon",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mCheckCountDiscount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mPaidInAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mPaidOutAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mGiftCardDiscountsPromosCouponsAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mAutoGratAmt",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "gParentItem",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mCheckStartTime",
+						"type": "smalldatetime",
+						"precision": 16,
+						"scale": 0
+					},
+					{
+						"name": "mCheckEndTime",
+						"type": "smalldatetime",
+						"precision": 16,
+						"scale": 0
+					},
+					{
+						"name": "mTaxExemptSales",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mAdjustAfterTenderAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mAdjustAfterTenderCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mAdjustAfterTenderNewCheckAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mAdjustAfterTenderNewCheckCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mDeleteBeforeKitchenAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mDeleteBeforeKitchenCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mDeleteAfterKitchenAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mDeleteAfterKitchenCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mDeleteOrderAfterKitchenAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mDeleteOrderAfterKitchenCount",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "mOrderModeChargeAmount",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCarriedOverAmt",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					},
+					{
+						"name": "mCarriedOverTaxAmt",
+						"type": "money",
+						"precision": 19,
+						"scale": 4
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "f_Standard_Transaction_Sales"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServerOnPrem')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "CopyOnPremData",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"queryTimeout": "02:00:00"
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "gDay",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDay",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gStore",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gStore",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gSequence",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gSequence",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gCheck",
+											"type": "String"
+										},
+										"sink": {
+											"name": "gCheck",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "gDestination",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDestination",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gRevCtr",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gRevCtr",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gTable",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gTable",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gTab",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gTab",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gEmployee",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gEmployee",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gManager",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gManager",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gJob",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gJob",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gDriver",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDriver",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gGuest",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gGuest",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gTax",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gTax",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gTender",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gTender",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gDiscount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDiscount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gVoid",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gVoid",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gItem",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gItem",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gMinute",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gMinute",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gHour",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gHour",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gHouseAccount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gHouseAccount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gDaypart",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDaypart",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gCashier",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gCashier",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gCoupon",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gCoupon",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gPaidType",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gPaidType",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mQuantity",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mQuantity",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCheckAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mTaxAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mTaxAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mVoidCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mVoidCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mVoidAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mVoidAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mDiscountCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mDiscountCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mDiscountAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mDiscountAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mGuestCount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mGuestCount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCoverCount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCoverCount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mTenderCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mTenderCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mTenderAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mTenderAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mTipAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mTipAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mServiceCharge",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mServiceCharge",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeliveryCharge",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mDeliveryCharge",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mMenuItemPriceExtended",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mMenuItemPriceExtended",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCouponCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mCouponCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mCouponAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCouponAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mCheckCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mActualDepositAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mActualDepositAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mExpectedDepositAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mExpectedDepositAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mGiftCardSales",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mGiftCardSales",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckTotal",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCheckTotal",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckSpanTime",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mCheckSpanTime",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gRegister",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gRegister",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gDrawer",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gDrawer",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gIntraday",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gIntraday",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gHalfHour",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gHalfHour",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "gQuarterHour",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gQuarterHour",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mGrossSales",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mGrossSales",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mNetSales",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mNetSales",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mInclusiveTaxAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mInclusiveTaxAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mExclusiveTaxAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mExclusiveTaxAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckCountCoupon",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mCheckCountCoupon",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckCountDiscount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mCheckCountDiscount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mPaidInAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mPaidInAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mPaidOutAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mPaidOutAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mGiftCardDiscountsPromosCouponsAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mGiftCardDiscountsPromosCouponsAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mAutoGratAmt",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mAutoGratAmt",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "gParentItem",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "gParentItem",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckStartTime",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "mCheckStartTime",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "mCheckEndTime",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "mCheckEndTime",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "mTaxExemptSales",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mTaxExemptSales",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mAdjustAfterTenderAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mAdjustAfterTenderAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mAdjustAfterTenderCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mAdjustAfterTenderCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mAdjustAfterTenderNewCheckAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mAdjustAfterTenderNewCheckAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mAdjustAfterTenderNewCheckCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mAdjustAfterTenderNewCheckCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteBeforeKitchenAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mDeleteBeforeKitchenAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteBeforeKitchenCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mDeleteBeforeKitchenCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteAfterKitchenAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mDeleteAfterKitchenAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteAfterKitchenCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mDeleteAfterKitchenCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteOrderAfterKitchenAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mDeleteOrderAfterKitchenAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mDeleteOrderAfterKitchenCount",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "mDeleteOrderAfterKitchenCount",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "mOrderModeChargeAmount",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mOrderModeChargeAmount",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCarriedOverAmt",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCarriedOverAmt",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "mCarriedOverTaxAmt",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "mCarriedOverTaxAmt",
+											"type": "Decimal"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ChopShopOnPrem",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "Parquet_f_standard",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ChopShopOnPrem')]",
+				"[concat(variables('factoryId'), '/datasets/Parquet_f_standard')]"
+			]
+		}
+	]
+}
